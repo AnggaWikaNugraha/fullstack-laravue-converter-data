@@ -1,78 +1,128 @@
 # Converter Hub
 
-A fullstack web application for converting data between popular formats with a step-by-step preview experience — upload a file, preview the source data, convert, preview the output, then download the result.
+A fullstack web application for converting data between popular formats. Upload a file, preview the source data, and download the result — all updated automatically without any buttons.
 
 ## Features
 
 | Converter | Status |
 |---|---|
-| Excel → JSON | Planned |
-| JSON → EXCEL | Planned |
+| Excel → JSON | Done |
+| JSON → Excel | Planned |
 
-**User flow:** Upload source → Preview source data → Convert → Preview output → Download
+## User Flow
+
+```
+Upload File / Paste Data  →  Preview Table  →  JSON Output  →  Download
+     (auto)                     (auto)            (auto)
+```
+
+Every step is reactive — no Preview or Convert buttons. Any change to the source data instantly updates the preview and output.
 
 ## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Backend | Laravel 13 (PHP 8.3) |
-| Frontend | Vue 3 + Vite 8 |
-| Database | SQLite (default) |
+| Backend | Laravel 13 (PHP 8.3) + PhpSpreadsheet |
+| Frontend | Vue 3 + Vite 8 + Tailwind CSS |
+| Database | — (stateless, no DB needed) |
 
 ## Project Structure
 
 ```
 fullstack-laravue-converter-hub/
-├── be-server/      # Laravel API backend
-└── fe-web/         # Vue 3 frontend
+├── be-server/                          # Laravel API
+│   ├── app/Http/Controllers/Api/
+│   │   └── ExcelController.php         # parse & convert logic
+│   └── routes/api.php
+└── fe-web/                             # Vue 3 frontend
+    └── src/
+        ├── App.vue
+        └── components/
+            ├── StepSource.vue          # file upload / data input
+            ├── StepPreview.vue         # spreadsheet table preview
+            └── StepOutput.vue          # JSON output + download
 ```
 
-## Getting Started
+## Running Locally
 
-### Prerequisites
+> Requires PHP 8.3+, Composer, Node.js 20+
 
-- PHP >= 8.3
-- Composer
-- Node.js >= 18
-
-### Backend
-
+**Backend — terminal 1:**
 ```bash
 cd be-server
 composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate
 php artisan serve
+# → http://localhost:8000
 ```
 
-Backend runs at `http://localhost:8000`
-
-### Frontend
-
+**Frontend — terminal 2:**
 ```bash
 cd fe-web
+nvm use 24   # Node 20+ required
 npm install
 npm run dev
+# → http://localhost:5173
 ```
 
-Frontend runs at `http://localhost:5173`
+## API Endpoints
 
-### Run Both Together (from `be-server/`)
+### `POST /api/excel/parse`
+Upload an Excel file and get the sheet list and all rows as a 2D array.
 
-```bash
-cd be-server
-composer run dev
-```
+**Request:** `multipart/form-data`
 
-## API
-
-| Method | Endpoint | Description |
+| Field | Type | Description |
 |---|---|---|
-| POST | `/api/convert` | Upload file and convert |
+| `file` | file | `.xlsx`, `.xls`, `.xlsm` — max 10 MB |
+| `sheet` | string | sheet name (optional, defaults to first sheet) |
 
-> Endpoints will be documented as features are built.
+**Response:**
+```json
+{
+  "sheets": ["Products", "Employees"],
+  "active_sheet": "Products",
+  "rows": [
+    ["ID", "Product Name", "Price"],
+    ["1", "Wireless Mouse", "149000"]
+  ]
+}
+```
 
-## License
+---
 
-MIT
+### `POST /api/excel/convert`
+Convert rows to JSON with configurable header row and output format.
+
+**Request:** `application/json`
+
+| Field | Type | Default | Description |
+|---|---|---|---|
+| `rows` | array | — | 2D array from parse |
+| `header_row` | integer | `1` | which row to use as header |
+| `data_format` | string | `array_of_objects` | `array_of_objects` or `array_of_arrays` |
+
+**Response:**
+```json
+{
+  "data": [
+    { "ID": "1", "Product Name": "Wireless Mouse", "Price": "149000" }
+  ],
+  "total": 1
+}
+```
+
+## Input Format (Manual)
+
+The textarea supports two formats:
+
+**`="value"` format** (recommended for manual input):
+```
+="ID"  ="Product Name"  ="Price"
+="1"   ="Wireless Mouse" ="149000"
+```
+
+**Plain TSV** (paste directly from Excel):
+```
+ID	Product Name	Price
+1	Wireless Mouse	149000
+```
