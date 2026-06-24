@@ -10,13 +10,13 @@
       </span>
 
       <h1 class="text-5xl font-bold text-slate-900 tracking-tight leading-tight max-w-2xl">
-        Convert your data,
+        Convert anything,
         <span class="text-indigo-600">instantly.</span>
       </h1>
 
       <p class="text-lg text-slate-500 max-w-xl leading-relaxed">
-        Upload an Excel file or paste your data — get a clean JSON output in seconds.
-        No setup, no account, just convert.
+        Data formats, developer tools, UI design, and AI-powered generators —
+        all in one place. No setup, no account, just convert.
       </p>
 
       <RouterLink
@@ -31,48 +31,138 @@
     </div>
   </section>
 
-  <!-- Supported formats -->
+  <!-- Categories -->
   <section class="max-w-5xl mx-auto px-5 py-16">
-    <h2 class="text-center text-sm font-semibold text-slate-400 uppercase tracking-widest mb-10">Supported Converters</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <h2 class="text-center text-sm font-semibold text-slate-400 uppercase tracking-widest mb-10">What's Inside</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 flex items-start gap-4 shadow-sm">
-        <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center shrink-0">
-          <svg class="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18M9 3v18"/>
-          </svg>
+      <!-- Data Format -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center shrink-0">
+            <svg class="w-4.5 h-4.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18M9 3v18"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-slate-800">Data Format</p>
+            <p class="text-xs text-slate-400">Excel, CSV, JSON, XML, YAML</p>
+          </div>
         </div>
-        <div>
-          <p class="font-semibold text-slate-800 text-sm">Excel → JSON</p>
-          <p class="text-xs text-slate-400 mt-1">.xlsx · .xls · .xlsm</p>
-          <span class="inline-block mt-2 text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 font-medium">Available</span>
-        </div>
+        <ul class="space-y-2.5">
+          <li class="flex items-center justify-between">
+            <span class="text-sm text-slate-700">Excel → JSON</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 font-medium">Available</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-sm text-slate-400">CSV → JSON</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-sm text-slate-400">JSON → Excel</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-sm text-slate-400">XML → JSON · YAML ↔ JSON</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+          </li>
+        </ul>
       </div>
 
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 flex items-start gap-4 shadow-sm opacity-60">
-        <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
-          <svg class="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/>
-          </svg>
+      <!-- Developer Tools -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0">
+            <svg class="w-4.5 h-4.5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-slate-800">Developer Tools</p>
+            <p class="text-xs text-slate-400">Encode, decode, generate, transform</p>
+          </div>
         </div>
-        <div>
-          <p class="font-semibold text-slate-800 text-sm">CSV → JSON</p>
-          <p class="text-xs text-slate-400 mt-1">.csv</p>
-          <span class="inline-block mt-2 text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 border border-slate-200 font-medium">Coming soon</span>
-        </div>
+        <ul class="space-y-2.5">
+          <li class="flex items-center justify-between">
+            <span class="text-sm text-slate-400">Base64 ↔ Text</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-sm text-slate-400">JWT Decoder</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-sm text-slate-400">Hash Generator — MD5, SHA256</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-sm text-slate-400">Cron → Human Readable</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+          </li>
+        </ul>
       </div>
 
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 flex items-start gap-4 shadow-sm opacity-60">
-        <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
-          <svg class="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14 2v6h6"/>
-          </svg>
+      <!-- UI / Design -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-9 h-9 rounded-xl bg-violet-50 border border-violet-200 flex items-center justify-center shrink-0">
+            <svg class="w-4.5 h-4.5 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4-4a3 3 0 014.24 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-slate-800">UI / Design</p>
+            <p class="text-xs text-slate-400">Color, units, SVG</p>
+          </div>
         </div>
-        <div>
-          <p class="font-semibold text-slate-800 text-sm">JSON → YAML</p>
-          <p class="text-xs text-slate-400 mt-1">.json · .yaml</p>
-          <span class="inline-block mt-2 text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 border border-slate-200 font-medium">Coming soon</span>
+        <ul class="space-y-2.5">
+          <li class="flex items-center justify-between">
+            <span class="text-sm text-slate-400">Color — HEX ↔ RGB ↔ HSL</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-sm text-slate-400">CSS Unit — px ↔ rem ↔ em</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-sm text-slate-400">SVG Optimizer</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- AI Generator -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,#eef2ff,transparent_70%)] pointer-events-none"></div>
+        <div class="relative">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center shrink-0">
+              <svg class="w-4.5 h-4.5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <p class="text-sm font-bold text-slate-800">AI Generator</p>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-600 uppercase tracking-wide">Claude API</span>
+              </div>
+              <p class="text-xs text-slate-400">Describe or upload → get UI output</p>
+            </div>
+          </div>
+          <ul class="space-y-2.5">
+            <li class="flex items-center justify-between">
+              <span class="text-sm text-slate-400">Text → HTML Wireframe</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+            </li>
+            <li class="flex items-center justify-between">
+              <span class="text-sm text-slate-400">Text → ASCII Mockup</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+            </li>
+            <li class="flex items-center justify-between">
+              <span class="text-sm text-slate-400">Image + Text → UI Revamp</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -93,7 +183,7 @@
           </div>
           <div>
             <p class="font-semibold text-slate-800">1. Upload or Paste</p>
-            <p class="text-sm text-slate-400 mt-1">Upload an Excel file or paste data manually into the input area.</p>
+            <p class="text-sm text-slate-400 mt-1">Upload a file or paste your data directly into the input area.</p>
           </div>
         </div>
 
@@ -105,7 +195,7 @@
           </div>
           <div>
             <p class="font-semibold text-slate-800">2. Preview</p>
-            <p class="text-sm text-slate-400 mt-1">Your data is shown as a spreadsheet table. Set which row is the header.</p>
+            <p class="text-sm text-slate-400 mt-1">See your data in a structured preview — auto-updated on every change.</p>
           </div>
         </div>
 
@@ -117,7 +207,7 @@
           </div>
           <div>
             <p class="font-semibold text-slate-800">3. Download</p>
-            <p class="text-sm text-slate-400 mt-1">Copy to clipboard or download the JSON file — done.</p>
+            <p class="text-sm text-slate-400 mt-1">Copy to clipboard or download the result file instantly.</p>
           </div>
         </div>
 
