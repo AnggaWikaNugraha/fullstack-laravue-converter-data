@@ -20,39 +20,36 @@ const {
 
 function loadExample() {
   rawText.value = rowsToText(EXAMPLE_ROWS)
-  error.value = ''
 }
+
 </script>
 
 <template>
   <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-    <!-- Card header -->
-    <div class="flex items-center justify-between px-5 py-3.5 border-b border-slate-100">
-      <div class="flex items-center gap-3">
-        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold shrink-0">1</span>
-        <span class="text-sm font-semibold text-slate-700">Source Data</span>
 
-        <div class="flex items-center gap-1.5 ml-2">
-          <span class="text-xs text-slate-400">Source</span>
-          <AppSelect>
-            <option>Excel</option>
-          </AppSelect>
+    <!-- Header -->
+    <div class="px-5 py-4 border-b border-slate-100 bg-linear-to-r from-slate-50/80 to-white">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p class="text-[10px] font-bold text-indigo-500 tracking-widest uppercase mb-0.5">Step 01</p>
+          <h2 class="text-sm font-bold text-slate-900">Source Data</h2>
         </div>
-
-        <div v-if="sheets.length" class="flex items-center gap-1.5">
-          <span class="text-xs text-slate-400">Sheet</span>
-          <AppSelect :model-value="selectedSheet || activeSheet" @change="onSheetChange">
-            <option v-for="s in sheets" :key="s" :value="s">{{ s }}</option>
-          </AppSelect>
+        <div class="flex items-center gap-2 flex-wrap">
+          <div v-if="sheets.length" class="flex items-center gap-1.5">
+            <span class="text-xs text-slate-400">Sheet</span>
+            <AppSelect :model-value="selectedSheet || activeSheet" @change="onSheetChange">
+              <option v-for="s in sheets" :key="s" :value="s">{{ s }}</option>
+            </AppSelect>
+          </div>
+          <AppButton variant="soft" size="sm" @click="loadExample">Example</AppButton>
+          <label class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-900 text-white hover:bg-slate-700 transition-colors cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 3v13M7 8l5-5 5 5"/>
+            </svg>
+            Upload File
+            <input type="file" accept=".xlsx,.xls,.xlsm" class="hidden" @change="onFileChange" />
+          </label>
         </div>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <AppButton variant="soft" @click="loadExample">Example</AppButton>
-        <label class="text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-900 text-white hover:bg-slate-700 transition-colors cursor-pointer">
-          ↑ Upload File
-          <input type="file" accept=".xlsx,.xls,.xlsm" class="hidden" @change="onFileChange" />
-        </label>
       </div>
     </div>
 
@@ -60,7 +57,7 @@ function loadExample() {
     <div class="relative">
       <textarea
         v-model="rawText"
-        placeholder="Paste data here or click Upload File / Example..."
+        placeholder='Paste your data here in ="value" format, or click Upload File / Example above...'
         class="w-full h-48 bg-slate-950 text-slate-200 font-mono text-xs leading-relaxed p-5 resize-none outline-none placeholder-slate-600"
         spellcheck="false"
       />
@@ -74,14 +71,20 @@ function loadExample() {
     </div>
 
     <!-- Footer -->
-    <div class="px-5 py-2.5 border-t border-slate-100 flex items-center justify-between">
-      <p v-if="error" class="text-xs text-red-500 flex items-center gap-1">
-        <span>⚠</span> {{ error?.message ?? 'Failed to read file.' }}
+    <div class="px-6 py-3 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+      <p v-if="error" class="text-xs text-red-500 flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+        </svg>
+        {{ error?.message ?? 'Failed to read file.' }}
       </p>
       <p v-else class="text-xs text-slate-400">
-        Supports <code class="text-slate-500">.xlsx</code> · <code class="text-slate-500">.xls</code> · <code class="text-slate-500">.xlsm</code>
+        Supports <code class="font-mono text-slate-500">.xlsx</code> · <code class="font-mono text-slate-500">.xls</code> · <code class="font-mono text-slate-500">.xlsm</code>
       </p>
-      <span class="text-xs text-slate-300">Auto-updates on change</span>
+      <span class="text-xs text-slate-400 flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        Auto-updates on change
+      </span>
     </div>
   </div>
 </template>
