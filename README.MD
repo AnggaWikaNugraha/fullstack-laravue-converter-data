@@ -13,55 +13,60 @@ A fullstack web application for converting data between popular formats. Upload 
 
 ```
 Upload File / Paste Data  →  Preview Table  →  JSON Output  →  Download
-     (auto)                     (auto)            (auto)
+        (auto)                   (auto)            (auto)
 ```
 
 Every step is reactive — no Preview or Convert buttons. Any change to the source data instantly updates the preview and output.
 
 ## Tech Stack
 
-| Layer | Technology |
+**Backend**
+
+| | Technology |
 |---|---|
-| Backend | Laravel 13 (PHP 8.3) + PhpSpreadsheet |
-| Frontend | Vue 3 + Vite 8 + Tailwind CSS |
+| Framework | Laravel 13 (PHP 8.3) |
+| Excel Parser | PhpSpreadsheet |
 | Database | — (stateless, no DB needed) |
+
+**Frontend**
+
+| | Technology |
+|---|---|
+| Framework | Vue 3 + Vite 8 |
+| Styling | Tailwind CSS v4 |
+| State / API | TanStack Query (vue-query) |
+| Router | Vue Router 4 |
 
 ## Project Structure
 
 ```
 fullstack-laravue-converter-hub/
-├── be-server/                          # Laravel API
+├── be-server/                              # Laravel API
 │   ├── app/Http/Controllers/Api/
-│   │   └── ExcelController.php         # parse & convert logic
+│   │   └── ExcelController.php             # parse & convert endpoints
 │   └── routes/api.php
-└── fe-web/                             # Vue 3 frontend
+└── fe-web/                                 # Vue 3 frontend
     └── src/
-        ├── App.vue
-        └── components/
-            ├── StepSource.vue          # file upload / data input
-            ├── StepPreview.vue         # spreadsheet table preview
-            └── StepOutput.vue          # JSON output + download
-```
-
-## Running Locally
-
-> Requires PHP 8.3+, Composer, Node.js 20+
-
-**Backend — terminal 1:**
-```bash
-cd be-server
-composer install
-php artisan serve
-# → http://localhost:8000
-```
-
-**Frontend — terminal 2:**
-```bash
-cd fe-web
-nvm use 24   # Node 20+ required
-npm install
-npm run dev
-# → http://localhost:5173
+        ├── api/
+        │   └── excel.js                    # axios API calls
+        ├── composables/
+        │   ├── useConverter.js             # shared state (rows, result)
+        │   ├── useExcelParser.js           # file upload / paste logic
+        │   ├── useExcelConverter.js        # rows → JSON conversion logic
+        │   └── useJsonOutput.js            # format, copy, download
+        ├── utils/
+        │   └── excel.js                    # pure functions (parse, highlight, etc.)
+        ├── components/
+        │   ├── AppButton.vue
+        │   ├── AppInput.vue
+        │   └── AppSelect.vue
+        └── pages/
+            ├── Home.vue
+            └── Convert.vue
+                └── convert/
+                    ├── StepSource.vue      # file upload / data input
+                    ├── StepPreview.vue     # spreadsheet table preview
+                    └── StepOutput.vue      # JSON output + download
 ```
 
 ## API Endpoints
@@ -111,11 +116,11 @@ Convert rows to JSON with configurable header row and output format.
 }
 ```
 
-## Input Format (Manual)
+## Input Format (Manual Paste)
 
 The textarea supports two formats:
 
-**`="value"` format** (recommended for manual input):
+**`="value"` format** (recommended — works with spaces in values):
 ```
 ="ID"  ="Product Name"  ="Price"
 ="1"   ="Wireless Mouse" ="149000"
