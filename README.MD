@@ -59,6 +59,39 @@ Upload File / Paste Data  →  Preview Table  →  JSON Output  →  Download
 
 Every step is reactive — no Preview or Convert buttons. Any change to the source data instantly updates the preview and output.
 
+## Deployment
+
+### Backend → Render
+
+1. Push `be-server/` to a GitHub repo (or monorepo)
+2. Create a new **Web Service** on [Render](https://render.com)
+3. Set build & start commands:
+   ```
+   Build:  composer install --no-dev --optimize-autoloader
+   Start:  php artisan serve --host=0.0.0.0 --port=$PORT
+   ```
+4. Add environment variables on Render:
+   ```
+   APP_ENV=production
+   APP_KEY=             # run: php artisan key:generate --show
+   APP_DEBUG=false
+   APP_URL=             # your Render URL e.g. https://converter-hub-api.onrender.com
+   FRONTEND_URL=        # your Vercel URL e.g. https://converter-hub.vercel.app
+   ```
+
+### Frontend → Vercel
+
+1. Push `fe-web/` to GitHub
+2. Import project on [Vercel](https://vercel.com)
+3. Vercel auto-detects Vite — no config needed
+4. Add environment variable on Vercel:
+   ```
+   VITE_API_BASE_URL=https://your-app-name.onrender.com
+   ```
+5. Deploy — done
+
+> **Local dev**: `VITE_API_BASE_URL` should be empty (`.env`). Vite proxy handles `/api` → `localhost:8000` automatically.
+
 ## Tech Stack
 
 **Backend**
