@@ -2,12 +2,53 @@
 
 A fullstack web application for converting data between popular formats. Upload a file, preview the source data, and download the result — all updated automatically without any buttons.
 
+## Coming Soon
+
+**Data Format**
+
+| Converter |
+|---|
+| CSV → JSON |
+| JSON → Excel |
+| JSON → CSV |
+| XML → JSON |
+| YAML ↔ JSON |
+
+**UI / Design**
+
+| Converter |
+|---|
+| Color — HEX ↔ RGB ↔ HSL ↔ OKLCH |
+| CSS Unit — px ↔ rem ↔ em ↔ vh/vw |
+| SVG Optimizer |
+
+**AI Generator** *(requires Claude API)*
+
+| Generator | Description |
+|---|---|
+| Text → HTML Wireframe | Describe a UI in text, get a preview-ready HTML + CSS mockup |
+| Text → ASCII Mockup | Low-fi brainstorming layout from text description |
+| Text → Component Tree | JSON blueprint of UI structure from description |
+| Image + Text → UI Revamp | Upload a UI screenshot, describe the changes — get a revamped HTML output |
+| Image + Text → Brainstorm | Upload a UI screenshot, get improvement ideas, new layout suggestions, or a redesigned wireframe |
+
+**Developer Tools**
+
+| Converter |
+|---|
+| Base64 ↔ Text |
+| URL Encode / Decode |
+| Unix Timestamp ↔ Date |
+| Number Base — decimal ↔ hex ↔ binary |
+| Case — camelCase ↔ snake_case ↔ kebab-case |
+| Markdown → HTML |
+| JWT Decoder |
+
 ## Features
 
 | Converter | Status |
 |---|---|
 | Excel → JSON | Done |
-| JSON → Excel | Planned |
 
 ## User Flow
 
