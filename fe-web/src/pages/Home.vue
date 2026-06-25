@@ -1,7 +1,7 @@
 <template>
   <!-- Hero -->
   <section class="relative overflow-hidden bg-white border-b border-slate-200">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#eef2ff,_transparent_60%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#eef2ff,transparent_60%)]"></div>
     <div class="relative max-w-5xl mx-auto px-5 py-24 flex flex-col items-center text-center gap-6">
 
       <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-xs font-medium border border-indigo-200">
@@ -51,15 +51,15 @@
         </div>
         <ul class="space-y-2.5">
           <li class="flex items-center justify-between">
-            <span class="text-sm text-slate-700">Excel → JSON</span>
+            <RouterLink to="/convert" class="text-sm text-slate-700 hover:text-indigo-600 transition-colors">Excel → JSON</RouterLink>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 font-medium">Available</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <RouterLink to="/json-to-excel" class="text-sm text-slate-700 hover:text-indigo-600 transition-colors">JSON → Excel</RouterLink>
             <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 font-medium">Available</span>
           </li>
           <li class="flex items-center justify-between">
             <span class="text-sm text-slate-400">CSV → JSON</span>
-            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
-          </li>
-          <li class="flex items-center justify-between">
-            <span class="text-sm text-slate-400">JSON → Excel</span>
             <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
           </li>
           <li class="flex items-center justify-between">

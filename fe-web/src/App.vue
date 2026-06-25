@@ -25,7 +25,14 @@
             class="text-sm px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
             active-class="text-slate-900 bg-slate-100"
           >
-            Convert
+            Excel → JSON
+          </RouterLink>
+          <RouterLink
+            to="/json-to-excel"
+            class="text-sm px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+            active-class="text-slate-900 bg-slate-100"
+          >
+            JSON → Excel
           </RouterLink>
         </nav>
       </div>

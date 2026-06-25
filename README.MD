@@ -9,7 +9,6 @@ A fullstack web application for converting data between popular formats. Upload 
 | Converter |
 |---|
 | CSV → JSON |
-| JSON → Excel |
 | JSON → CSV |
 | XML → JSON |
 | YAML ↔ JSON |
@@ -48,7 +47,8 @@ A fullstack web application for converting data between popular formats. Upload 
 
 | Converter | Status |
 |---|---|
-| Excel → JSON | Done |
+| Excel → JSON | Available |
+| JSON → Excel | Available |
 
 ## User Flow
 
@@ -98,7 +98,7 @@ Every step is reactive — no Preview or Convert buttons. Any change to the sour
 
 | | Technology |
 |---|---|
-| Framework | Laravel 13 (PHP 8.3) |
+| Framework | Laravel 13 (PHP 8.4) |
 | Excel Parser | PhpSpreadsheet |
 | Database | — (stateless, no DB needed) |
 
@@ -122,25 +122,29 @@ fullstack-laravue-converter-hub/
 └── fe-web/                                 # Vue 3 frontend
     └── src/
         ├── api/
-        │   └── excel.js                    # axios API calls
+        │   ├── excel.js                    # axios calls for Excel endpoints
+        │   └── json.js                     # axios calls for JSON endpoints
         ├── composables/
         │   ├── useConverter.js             # shared state (rows, result)
         │   ├── useExcelParser.js           # file upload / paste logic
         │   ├── useExcelConverter.js        # rows → JSON conversion logic
-        │   └── useJsonOutput.js            # format, copy, download
+        │   ├── useJsonOutput.js            # format, copy, download
+        │   └── useJsonToExcel.js           # JSON → Excel reactive logic
         ├── utils/
-        │   └── excel.js                    # pure functions (parse, highlight, etc.)
+        │   ├── excel.js                    # pure functions (parse, col labels, etc.)
+        │   └── json.js                     # pure functions (parse, headers, rows)
         ├── components/
         │   ├── AppButton.vue
         │   ├── AppInput.vue
         │   └── AppSelect.vue
         └── pages/
             ├── Home.vue
-            └── Convert.vue
-                └── convert/
-                    ├── StepSource.vue      # file upload / data input
-                    ├── StepPreview.vue     # spreadsheet table preview
-                    └── StepOutput.vue      # JSON output + download
+            ├── Convert.vue                 # Excel → JSON
+            ├── JsonToExcel.vue             # JSON → Excel
+            └── convert/
+                ├── StepSource.vue          # file upload / data input
+                ├── StepPreview.vue         # spreadsheet table preview
+                └── StepOutput.vue          # JSON output + download
 ```
 
 ## API Endpoints
@@ -189,6 +193,24 @@ Convert rows to JSON with configurable header row and output format.
   "total": 1
 }
 ```
+
+---
+
+### `POST /api/json/to-excel`
+Convert a JSON array to an `.xlsx` file download.
+
+**Request:** `application/json`
+
+| Field | Type | Default | Description |
+|---|---|---|---|
+| `json` | string | — | JSON-encoded array of objects or array of arrays |
+| `filename` | string | `export` | Output filename (without extension) |
+
+**Response:** Binary `.xlsx` file (`application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`)
+
+**Supports:**
+- Array of objects → keys become column headers
+- Array of arrays → first row used as header
 
 ## Input Format (Manual Paste)
 
