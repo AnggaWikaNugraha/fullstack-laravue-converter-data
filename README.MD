@@ -1,6 +1,6 @@
 # Converter Hub
 
-A fullstack web application for converting data between popular formats. Upload a file, preview the source data, and download the result — all updated automatically without any buttons.
+A fullstack web application for converting data, colors, and more. Upload a file or paste your input, preview the result instantly, and download — all reactive, no extra buttons needed.
 
 ## Coming Soon
 
@@ -17,7 +17,6 @@ A fullstack web application for converting data between popular formats. Upload 
 
 | Converter |
 |---|
-| Color — HEX ↔ RGB ↔ HSL ↔ OKLCH |
 | CSS Unit — px ↔ rem ↔ em ↔ vh/vw |
 | SVG Optimizer |
 
@@ -45,10 +44,11 @@ A fullstack web application for converting data between popular formats. Upload 
 
 ## Features
 
-| Converter | Status |
-|---|---|
-| Excel → JSON | Available |
-| JSON → Excel | Available |
+| Converter | Status | Route |
+|---|---|---|
+| Excel → JSON | Available | `/convert` |
+| JSON → Excel | Available | `/json-to-excel` |
+| Color — HEX ↔ RGB ↔ HSL ↔ OKLCH | Available | `/color` |
 
 ## User Flow
 
@@ -110,6 +110,7 @@ Every step is reactive — no Preview or Convert buttons. Any change to the sour
 | Styling | Tailwind CSS v4 |
 | State / API | TanStack Query (vue-query) |
 | Router | Vue Router 4 |
+| Color | culori |
 
 ## Project Structure
 
@@ -129,10 +130,12 @@ fullstack-laravue-converter-hub/
         │   ├── useExcelParser.js           # file upload / paste logic
         │   ├── useExcelConverter.js        # rows → JSON conversion logic
         │   ├── useJsonOutput.js            # format, copy, download
-        │   └── useJsonToExcel.js           # JSON → Excel reactive logic
+        │   ├── useJsonToExcel.js           # JSON → Excel reactive logic
+        │   └── useColorConverter.js        # color conversion reactive logic
         ├── utils/
         │   ├── excel.js                    # pure functions (parse, col labels, etc.)
-        │   └── json.js                     # pure functions (parse, headers, rows)
+        │   ├── json.js                     # pure functions (parse, headers, rows)
+        │   └── color.js                    # pure functions (parse, convert, clamp gamut)
         ├── components/
         │   ├── AppButton.vue
         │   ├── AppInput.vue
@@ -141,6 +144,7 @@ fullstack-laravue-converter-hub/
             ├── Home.vue
             ├── Convert.vue                 # Excel → JSON
             ├── JsonToExcel.vue             # JSON → Excel
+            ├── ColorConverter.vue          # Color — HEX ↔ RGB ↔ HSL ↔ OKLCH
             └── convert/
                 ├── StepSource.vue          # file upload / data input
                 ├── StepPreview.vue         # spreadsheet table preview
