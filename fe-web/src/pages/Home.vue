@@ -121,8 +121,8 @@
             <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 font-medium">Available</span>
           </li>
           <li class="flex items-center justify-between">
-            <span class="text-sm text-slate-400">CSS Unit — px ↔ rem ↔ em</span>
-            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-medium">Soon</span>
+            <RouterLink to="/css-unit" class="text-sm text-slate-700 hover:text-indigo-600 transition-colors">CSS Unit — px ↔ rem ↔ em ↔ vh/vw</RouterLink>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 font-medium">Available</span>
           </li>
           <li class="flex items-center justify-between">
             <span class="text-sm text-slate-400">SVG Optimizer</span>

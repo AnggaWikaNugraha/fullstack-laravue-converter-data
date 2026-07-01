@@ -17,7 +17,6 @@ A fullstack web application for converting data, colors, and more. Upload a file
 
 | Converter |
 |---|
-| CSS Unit — px ↔ rem ↔ em ↔ vh/vw |
 | SVG Optimizer |
 
 **AI Generator** *(requires Claude API)*
@@ -49,6 +48,7 @@ A fullstack web application for converting data, colors, and more. Upload a file
 | Excel → JSON | Available | `/convert` |
 | JSON → Excel | Available | `/json-to-excel` |
 | Color — HEX ↔ RGB ↔ HSL ↔ OKLCH | Available | `/color` |
+| CSS Unit — px ↔ rem ↔ em ↔ vh/vw | Available | `/css-unit` |
 
 ## User Flow
 
@@ -131,11 +131,13 @@ fullstack-laravue-converter-hub/
         │   ├── useExcelConverter.js        # rows → JSON conversion logic
         │   ├── useJsonOutput.js            # format, copy, download
         │   ├── useJsonToExcel.js           # JSON → Excel reactive logic
-        │   └── useColorConverter.js        # color conversion reactive logic
+        │   ├── useColorConverter.js        # color conversion reactive logic
+        │   └── useCssUnitConverter.js      # CSS unit conversion reactive logic
         ├── utils/
         │   ├── excel.js                    # pure functions (parse, col labels, etc.)
         │   ├── json.js                     # pure functions (parse, headers, rows)
-        │   └── color.js                    # pure functions (parse, convert, clamp gamut)
+        │   ├── color.js                    # pure functions (parse, convert, clamp gamut)
+        │   └── cssUnit.js                  # pure functions (unit conversion formulas)
         ├── components/
         │   ├── AppButton.vue
         │   ├── AppInput.vue
@@ -145,6 +147,7 @@ fullstack-laravue-converter-hub/
             ├── Convert.vue                 # Excel → JSON
             ├── JsonToExcel.vue             # JSON → Excel
             ├── ColorConverter.vue          # Color — HEX ↔ RGB ↔ HSL ↔ OKLCH
+            ├── CssUnitConverter.vue        # CSS Unit — px ↔ rem ↔ em ↔ vh/vw
             └── convert/
                 ├── StepSource.vue          # file upload / data input
                 ├── StepPreview.vue         # spreadsheet table preview
